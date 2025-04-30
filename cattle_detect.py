@@ -1,8 +1,8 @@
-# # main script to detect the cattles
+# main script to detect the cattles
 # import cv2
 # import os
 # from ultralytics import YOLO
-
+# import time
 # # Load pre-trained YOLOv8 model
 # model = YOLO("yolov8m.pt")  # or yolov8n.pt for faster inference
 
@@ -14,7 +14,7 @@
 # animal_class_ids = [cls_id for cls_id, name in model_names.items() if name in animal_classes]
 
 # # Input path: can be a single video file or a folder of videos
-# input_path = r"D:\Sakshi muchhala\person detection\cow_cross.mp4"  # Folder or single file
+# input_path = r"D:\Sakshi muchhala\person detection\highway.mp4"  # Folder or single file
 # output_dir = r"D:\Sakshi muchhala\person detection\cattle_output"
 # os.makedirs(output_dir, exist_ok=True)
 
@@ -34,7 +34,7 @@
 
 #     # Output file setup
 #     filename = os.path.basename(video_path)
-#     output_path = os.path.join(output_dir, f"5s_{filename}")
+#     output_path = os.path.join(output_dir, f"8m_{filename}")
     
 #     # Get the extension of the video file
 #     ext = os.path.splitext(filename)[1].lower()
@@ -61,7 +61,7 @@
 #     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
 #     print(f"Processing: {filename}")
-    
+#     start_time = time.time()
 #     while cap.isOpened():
 #         ret, frame = cap.read()
 #         if not ret:
@@ -88,6 +88,8 @@
 
 #     cap.release()
 #     out.release()
+#     elapsed_time = time.time() - start_time
+#     print(f"Saved: {output_path} (Processed in {elapsed_time:.2f} seconds)")
 #     print(f"Saved: {output_path}")
 
 # cv2.destroyAllWindows()
@@ -111,7 +113,7 @@ model_names = model.names  # dictionary of id: name
 animal_class_ids = [cls_id for cls_id, name in model_names.items() if name in animal_classes]
 
 # Input video path (single video or folder)
-input_path = r"D:\Sakshi muchhala\person detection\highway.mp4"
+input_path = r"D:\Sakshi muchhala\person detection\cow_cross.mp4"
 output_dir = r"D:\Sakshi muchhala\person detection\cattle_output"
 os.makedirs(output_dir, exist_ok=True)
 
@@ -155,7 +157,7 @@ for video_path in video_files:
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
     print(f"Processing: {filename}")
-
+    start_time = time.time()
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -186,7 +188,7 @@ for video_path in video_files:
 cv2.destroyAllWindows()
 print("All videos processed.")
 
-# total_time = time.time() - start_time
-# print(f"\nTotal video processing time: {total_time:.2f} seconds")
+total_time = time.time() - start_time
+print(f"\nTotal video processing time: {total_time:.2f} seconds")
 
 
