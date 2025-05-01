@@ -4,10 +4,10 @@ import os
 from ultralytics import YOLO
 import time
 # Load pre-trained YOLOv8 model
-model = YOLO("yolov8m.pt")  # or yolov8n.pt for faster inference
+model = YOLO(r"D:\Sakshi muchhala\person detection\yolov8s.pt")  # or yolov8n.pt for faster inference
 
 # Animal classes from COCO
-animal_classes = ['horse', 'sheep', 'cow']
+animal_classes = ['bear', 'cat', 'cow', 'dog', 'horse', 'sheep']
 
 # Get class IDs of animal classes
 model_names = model.names
@@ -34,7 +34,7 @@ for video_path in video_files:
 
     # Output file setup
     filename = os.path.basename(video_path)
-    output_path = os.path.join(output_dir, f"8m_{filename}")
+    output_path = os.path.join(output_dir, f"8s_{filename}")
     
     # Get the extension of the video file
     ext = os.path.splitext(filename)[1].lower()
